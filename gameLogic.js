@@ -101,7 +101,7 @@ let boxY = 50;
 let boxSize = 50;
 let targetX = boxX;
 let targetY = boxY;
-let speed = 2;
+let speed = 5;
 
 let keysPressed = {};
 
