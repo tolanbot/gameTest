@@ -144,12 +144,22 @@ document.addEventListener('keyup', function(event) {
     keysPressed[event.key] = false;
 });
 
+// canvas.addEventListener('touchstart', function(event) {
+//     const touch = event.touches[0];
+//     const canvasRect = canvas.getBoundingClientRect();
+//     targetX = touch.clientX - canvasRect.left - boxSize / 2;
+//     targetY = touch.clientY - canvasRect.top - boxSize / 2;
+//     event.preventDefault(); // Prevent default touch behavior (like scrolling)
+// });
+
 canvas.addEventListener('touchstart', function(event) {
     const touch = event.touches[0];
     const canvasRect = canvas.getBoundingClientRect();
-    targetX = touch.clientX - canvasRect.left - boxSize / 2;
-    targetY = touch.clientY - canvasRect.top - boxSize / 2;
-    event.preventDefault(); // Prevent default touch behavior (like scrolling)
+    const ratio = window.devicePixelRatio || 1;
+    targetX = (touch.clientX - canvasRect.left) * ratio - boxSize / 2;
+    targetY = (touch.clientY - canvasRect.top) * ratio - boxSize / 2;
+    event.preventDefault();
 });
+
 
 drawGame();
