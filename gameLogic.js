@@ -111,7 +111,7 @@ function updateGame() {
     if (keysPressed['ArrowLeft']) targetX -= speed;
     if (keysPressed['ArrowRight']) targetX += speed;
 
-        boxX = Math.max(0, Math.min(canvas.width - boxSize, boxX));
+    boxX = Math.max(0, Math.min(canvas.width - boxSize, boxX));
     boxY = Math.max(0, Math.min(canvas.height - boxSize, boxY));
 
     // Move box towards the target
