@@ -38,24 +38,34 @@
 
 // drawGame();
 
+
+//version 2
+// 
+//version 3
+
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
 let boxX = 50;
 let boxY = 50;
 let boxSize = 50;
+let targetX = boxX;
+let targetY = boxY;
 let speed = 2;
 
 let keysPressed = {};
 
 function updateGame() {
-    if (keysPressed['ArrowUp']) boxY -= speed;
-    if (keysPressed['ArrowDown']) boxY += speed;
-    if (keysPressed['ArrowLeft']) boxX -= speed;
-    if (keysPressed['ArrowRight']) boxX += speed;
+    if (keysPressed['ArrowUp']) targetY -= speed;
+    if (keysPressed['ArrowDown']) targetY += speed;
+    if (keysPressed['ArrowLeft']) targetX -= speed;
+    if (keysPressed['ArrowRight']) targetX += speed;
 
-    boxX = Math.max(0, Math.min(canvas.width - boxSize, boxX));
-    boxY = Math.max(0, Math.min(canvas.height - boxSize, boxY));
+    // Move box towards the target
+    if (boxX < targetX) boxX += Math.min(speed, targetX - boxX);
+    if (boxX > targetX) boxX -= Math.min(speed, boxX - targetX);
+    if (boxY < targetY) boxY += Math.min(speed, targetY - boxY);
+    if (boxY > targetY) boxY -= Math.min(speed, boxY - targetY);
 }
 
 function drawGame() {
@@ -77,11 +87,9 @@ document.addEventListener('keyup', function(event) {
 canvas.addEventListener('touchstart', function(event) {
     const touch = event.touches[0];
     const canvasRect = canvas.getBoundingClientRect();
-    const touchX = touch.clientX - canvasRect.left;
-    const touchY = touch.clientY - canvasRect.top;
-
-    boxX = touchX - boxSize / 2;
-    boxY = touchY - boxSize / 2;
+    targetX = touch.clientX - canvasRect.left - boxSize / 2;
+    targetY = touch.clientY - canvasRect.top - boxSize / 2;
+    event.preventDefault(); // Prevent default touch behavior (like scrolling)
 });
 
 drawGame();
