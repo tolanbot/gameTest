@@ -105,21 +105,37 @@ let speed = 5;
 
 let keysPressed = {};
 
+// function updateGame() {
+//     if (keysPressed['ArrowUp']) targetY -= speed;
+//     if (keysPressed['ArrowDown']) targetY += speed;
+//     if (keysPressed['ArrowLeft']) targetX -= speed;
+//     if (keysPressed['ArrowRight']) targetX += speed;
+
+//     boxX = Math.max(0, Math.min(canvas.width - boxSize, boxX));
+//     boxY = Math.max(0, Math.min(canvas.height - boxSize, boxY));
+
+//     // Move box towards the target
+//     if (boxX < targetX) boxX += Math.min(speed, targetX - boxX);
+//     if (boxX > targetX) boxX -= Math.min(speed, boxX - targetX);
+//     if (boxY < targetY) boxY += Math.min(speed, targetY - boxY);
+//     if (boxY > targetY) boxY -= Math.min(speed, boxY - targetY);
+// }
+
 function updateGame() {
-    if (keysPressed['ArrowUp']) targetY -= speed;
-    if (keysPressed['ArrowDown']) targetY += speed;
-    if (keysPressed['ArrowLeft']) targetX -= speed;
-    if (keysPressed['ArrowRight']) targetX += speed;
+    if (keysPressed['ArrowUp']) targetY = Math.max(0, targetY - speed);
+    if (keysPressed['ArrowDown']) targetY = Math.min(canvas.height - boxSize, targetY + speed);
+    if (keysPressed['ArrowLeft']) targetX = Math.max(0, targetX - speed);
+    if (keysPressed['ArrowRight']) targetX = Math.min(canvas.width - boxSize, targetX + speed);
 
     boxX = Math.max(0, Math.min(canvas.width - boxSize, boxX));
     boxY = Math.max(0, Math.min(canvas.height - boxSize, boxY));
-
     // Move box towards the target
     if (boxX < targetX) boxX += Math.min(speed, targetX - boxX);
     if (boxX > targetX) boxX -= Math.min(speed, boxX - targetX);
     if (boxY < targetY) boxY += Math.min(speed, targetY - boxY);
     if (boxY > targetY) boxY -= Math.min(speed, boxY - targetY);
 }
+
 
 function drawGame() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
