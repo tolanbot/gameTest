@@ -44,7 +44,7 @@
 //version 3
 
 const canvas = document.getElementById('gameCanvas');
-canvas.width = window.innerWidth;
+// canvas.width = window.innerWidth;
 const ctx = canvas.getContext('2d');
 
 let boxX = 50;
@@ -93,8 +93,8 @@ canvas.addEventListener('touchstart', function(event) {
     event.preventDefault(); // Prevent default touch behavior (like scrolling)
 });
 
-window.addEventListener('resize', function() {
-    canvas.width = window.innerWidth;
-});
+// window.addEventListener('resize', function() {
+//     canvas.width = window.innerWidth;
+// });
 
 drawGame();
