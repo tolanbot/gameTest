@@ -44,6 +44,7 @@
 //version 3
 
 const canvas = document.getElementById('gameCanvas');
+canvas.width = window.innerWidth;
 const ctx = canvas.getContext('2d');
 
 let boxX = 50;
@@ -90,6 +91,10 @@ canvas.addEventListener('touchstart', function(event) {
     targetX = touch.clientX - canvasRect.left - boxSize / 2;
     targetY = touch.clientY - canvasRect.top - boxSize / 2;
     event.preventDefault(); // Prevent default touch behavior (like scrolling)
+});
+
+window.addEventListener('resize', function() {
+    canvas.width = window.innerWidth;
 });
 
 drawGame();
