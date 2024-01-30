@@ -27,7 +27,6 @@ function updateGame() {
     if (boxY > targetY) boxY -= Math.min(speed, boxY - targetY);
 }
 
-
 function drawGame() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = 'blue';
